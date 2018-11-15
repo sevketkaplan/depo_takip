@@ -1,0 +1,52 @@
+ <header class="header fixed-top clearfix">
+    <!--logo start-->
+    <div class="brand">
+        <a href="<%=root_path%>" class="logo">
+            STOK TAKİP
+        </a>
+        <div class="sidebar-toggle-box">
+            <div class="fa fa-bars"></div>
+        </div>
+    </div>
+    <!--logo end-->
+    <div class="nav notify-row" id="top_menu">
+        <!--  notification start -->
+        <ul class="nav top-menu">
+            <!-- settings start -->
+
+            <!-- settings end -->
+            <!-- inbox dropdown start-->
+            
+            <!-- inbox dropdown end -->
+            <!-- notification dropdown start-->
+            
+            <!-- notification dropdown end -->
+        </ul>
+        <!--  notification end -->
+    </div>
+    <div class="top-nav clearfix">
+        <!--search & user info start-->
+        <ul class="nav pull-right top-menu">
+
+            <!-- user login dropdown start-->
+
+
+            <% if user_signed_in? %>
+            <li>
+                <a href="<%= edit_user_registration_path%>">
+                    <i class="fa fa-cog"></i> 
+                    Hesap Ayarları
+                </a>
+            </li>
+            <li>
+                  <%= link_to destroy_user_session_path, method: :delete  do %>
+                  <i class="fa fa-sign-out"></i>Çıkış Yap
+                  <% end %>
+          </li>
+          <%end%>
+          <!-- user login dropdown end -->
+
+      </ul>
+      <!--search & user info end-->
+  </div>
+</header>

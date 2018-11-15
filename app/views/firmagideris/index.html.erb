@@ -1,0 +1,148 @@
+
+<section class="wrapper">
+  <!-- //market-->
+  <div class="market-updates">
+   <div class="col-md-3 market-update-gd">
+    <div class="market-update-block clr-block-2">
+     <div class="col-md-4 market-update-right">
+      <i class="fa fa-truck"> </i>
+    </div>
+    <div class="col-md-8 market-update-left">
+      <h4>Toplam Gider </h4>
+      <h3><%=Aracgideri.all.sum(:yakit)+Aracgideri.all.sum(:mtv)+Aracgideri.all.sum(:bakim)+Aracgideri.all.sum(:sigorta)+Aracgideri.all.sum(:kasko)+Firmagideri.all.sum(:elektrik)+Firmagideri.all.sum(:su)+Firmagideri.all.sum(:kira)+Firmagideri.all.sum(:vergi)+Firmagideri.all.sum(:dogalgaz)+Firmagideri.all.sum(:yemek)+Personelgideri.all.sum(:maas)+Personelgideri.all.sum(:sigorta)%>TL</h3>
+
+
+      
+      
+    </div>
+    <div class="clearfix"> </div>
+  </div>
+
+</div>
+<div class="col-md-3 market-update-gd">
+  <div class="market-update-block clr-block-1">
+   <div class="col-md-4 market-update-right">
+    <i class="fa fa-truck" ></i>
+  </div>
+  <div class="col-md-8 market-update-left">
+   <h4>Günlük Gider </h4>
+   <h3><%=Aracgideri.where("DATE(created_at) = ?", Date.today).sum(:yakit)+Aracgideri.where("DATE(created_at) = ?", Date.today).sum(:mtv)+Aracgideri.where("DATE(created_at) = ?", Date.today).sum(:bakim)+Aracgideri.where("DATE(created_at) = ?", Date.today).sum(:sigorta)+Aracgideri.where("DATE(created_at) = ?", Date.today).sum(:kasko)+Firmagideri.where("DATE(created_at) = ?", Date.today).sum(:elektrik)+Firmagideri.where("DATE(created_at) = ?", Date.today).sum(:su)+Firmagideri.where("DATE(created_at) = ?", Date.today).sum(:kira)+Firmagideri.where("DATE(created_at) = ?", Date.today).sum(:vergi)+Firmagideri.where("DATE(created_at) = ?", Date.today).sum(:dogalgaz)+Firmagideri.where("DATE(created_at) = ?", Date.today).sum(:yemek)+Personelgideri.where("DATE(created_at) = ?", Date.today).sum(:maas)+Personelgideri.where("DATE(created_at) = ?", Date.today).sum(:sigorta)%>TL</h3>
+
+ </div>
+ <div class="clearfix"> </div>
+</div>
+</div>
+<div class="col-md-3 market-update-gd">
+  <div class="market-update-block clr-block-3">
+   <div class="col-md-4 market-update-right">
+    <i class="fa fa-usd"></i>
+  </div>
+  <div class="col-md-8 market-update-left">
+    <h4>Günlük Ciro</h4>
+    <h3><%=Satilan.where(:date => Date.today).sum(:toplam_fiyat)%>  TL</h3>
+
+  </div>
+  <div class="clearfix"> </div>
+</div>
+</div>
+<div class="col-md-3 market-update-gd">
+  <div class="market-update-block clr-block-4">
+   <div class="col-md-4 market-update-right">
+    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+  </div>
+  <div class="col-md-8 market-update-left">
+    <h4>Toplam Ciro</h4>
+    <h3><%=Satilan.all.sum(:toplam_fiyat)%> TL</h3>
+    
+  </div>
+  <div class="clearfix"> </div>
+</div>
+</div>
+<div class="clearfix"> </div>
+</div>  
+
+<div class="table-agile-info">
+ <div class="panel panel-default">
+  <div class="panel-heading">
+    Üretilen Ürün Kayıtları
+
+  </div>
+  <div>
+    <table class="table" ui-jq="footable" ui-options='{
+    "paging": {
+    "enabled": true
+  },
+  "filtering": {
+  "enabled": true
+},
+"sorting": {
+"enabled": true
+}}'>
+<div class="container">
+
+  <div class="center">
+    <br>
+
+    <div class="col-md-4">
+     <%=form_tag firmagideris_path, :method =>'get' do%>
+
+     <%= date_field_tag :search, params[:search] %>
+
+     <%= submit_tag "Arama Yap"%>
+
+     <% end %>
+   </div>
+   <div class="col-md-4">
+
+     <%= link_to 'Firma Gider Kayıt Formu', new_firmagideri_path , class: "btn btn-primary " %><br><br>
+   </div>
+
+
+ </div>
+ <div class="col-md-4">
+  <%= link_to "CSV", firmagideris_path(format: "csv") %> |
+  <%= link_to "Excel", firmagideris_path(format: "xls") %>
+</div> 
+
+
+</div>
+<br>
+<thead>
+  <tr>
+    <th>Elektrik</th>
+    <th>Su</th>
+    <th>Doğalgaz</th>
+    <th>Kira</th>
+    <th>Vergi</th>
+    <th>Yemek</th>
+    <th>Tarih</th>
+
+  </tr>
+</thead>
+<tbody>
+  <% @firmagideris.each do |firmagideri| %>
+  <tr data-expanded="true">
+    <td><%= firmagideri.elektrik %> TL</td>
+    <td><%= firmagideri.su %> TL</td>
+    <td><%= firmagideri.dogalgaz %> TL</td>
+    <td><%= firmagideri.kira %> TL</td>
+    <td><%= firmagideri.vergi %> TL</td>
+    <td><%= firmagideri.yemek %> TL</td>
+
+    <td><%= firmagideri.created_at.strftime("%d-%m-%Y") %></td>
+
+    <td> <%= link_to '', edit_firmagideri_path(firmagideri) , class:"btn btn-default fa fa-pencil"%></td>
+    <td> <%= link_to '', firmagideri, method: :delete, data: { confirm: 'Are you sure?' },class:"btn btn-default fa fa-trash" %></td>
+
+  </tr>
+  <% end %>
+</tbody>
+</table>
+</div>
+</div>
+</table>
+<%= paginate @firmagideris %>
+</div>
+</div>
+</div>
+</section>

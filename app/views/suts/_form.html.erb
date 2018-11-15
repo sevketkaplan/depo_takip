@@ -1,0 +1,33 @@
+
+<section class="wrapper">
+  <div class="form-w3layouts">
+   <div class="row">
+    <div class="col-lg-12">
+      <section class="panel">
+        <header class="panel-heading">
+         Süt Giriş Paneli
+         
+       </header>
+       <%= form_with(model: sut, local: true) do |form| %>
+       
+       <div class="panel-body">
+         <form class="cmxform form-horizontal " id="commentForm" method="get" action="" novalidate="novalidate">
+          <div class="form-group ">
+            <label for="cname" class="control-label col-lg-3">Süt Miktarı Giriniz</label>
+            <%= form.text_field :miktar %>  Litre
+          </div>
+
+
+
+          <div class="actions pull-center">
+            <%= form.submit "Kaydet", class: "btn btn-primary"%>
+          </div>
+
+        </form>
+      </div>
+    </section>
+    <%end%>
+  </div>
+</div>
+</div>
+</section>

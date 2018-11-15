@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  teslim_yeri: MyString
+  adi: MyString
+  paket_tipi: MyString
+  adet: 1
+  birim_fiyat: MyString
+  toplam_fiyat: MyString
+  date: 2018-07-13
+  dagitici: MyString
+
+two:
+  teslim_yeri: MyString
+  adi: MyString
+  paket_tipi: MyString
+  adet: 1
+  birim_fiyat: MyString
+  toplam_fiyat: MyString
+  date: 2018-07-13
+  dagitici: MyString

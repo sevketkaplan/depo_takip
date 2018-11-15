@@ -1,0 +1,126 @@
+
+ <section class="wrapper">
+  <!-- //market-->
+  <div class="market-updates">
+   <div class="col-md-3 market-update-gd">
+    <div class="market-update-block clr-block-2">
+     <div class="col-md-4 market-update-right">
+      <i class="fa fa-truck"> </i>
+    </div>
+    <div class="col-md-8 market-update-left">
+       <h4>Kalan Süt </h4>
+      <h3><%=Sut.all.sum(:miktar)- Harcanansut.all.sum(:harcanan)%> Lt</h3>
+      
+    </div>
+    <div class="clearfix"> </div>
+  </div>
+
+</div>
+<div class="col-md-3 market-update-gd">
+  <div class="market-update-block clr-block-1">
+   <div class="col-md-4 market-update-right">
+    <i class="fa fa-truck" ></i>
+  </div>
+  <div class="col-md-8 market-update-left">
+   <h4>Günlük Süt </h4>
+   <h3><%=Sut.where(:date => Date.today).sum(:miktar)%>  Lt</h3>
+
+ </div>
+ <div class="clearfix"> </div>
+</div>
+</div>
+<div class="col-md-3 market-update-gd">
+  <div class="market-update-block clr-block-3">
+   <div class="col-md-4 market-update-right">
+    <i class="fa fa-usd"></i>
+  </div>
+  <div class="col-md-8 market-update-left">
+    <h4>Günlük Ciro</h4>
+    <h3><%=Satilan.where(:date => Date.today).sum(:toplam_fiyat)%>  TL</h3>
+
+  </div>
+  <div class="clearfix"> </div>
+</div>
+</div>
+<div class="col-md-3 market-update-gd">
+  <div class="market-update-block clr-block-4">
+   <div class="col-md-4 market-update-right">
+    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+  </div>
+  <div class="col-md-8 market-update-left">
+    <h4>Toplam Ciro</h4>
+    <h3><%=Satilan.all.sum(:toplam_fiyat)%> TL</h3>
+    
+  </div>
+  <div class="clearfix"> </div>
+</div>
+</div>
+<div class="clearfix"> </div>
+</div>  
+
+<div class="table-agile-info">
+ <div class="panel panel-default">
+  <div class="panel-heading">
+    Ürün Stok Bilgisi
+
+  </div>
+  <div>
+    <table class="table" ui-jq="footable" ui-options='{
+    "paging": {
+    "enabled": true
+  },
+  "filtering": {
+  "enabled": true
+},
+"sorting": {
+"enabled": true
+}}'>
+<div class="container">
+
+  <div class="center">
+    <br>
+
+
+    <div class="col-md-3">
+      <%= link_to 'Ürün Stok Kaydı', new_urunler_path , class: "btn btn-primary " %>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <%= link_to "CSV", urunlers_path(format: "csv") %> |
+    <%= link_to "Excel", urunlers_path(format: "xls") %>
+  </div> 
+</div>
+<br>
+<thead>
+  <tr>
+    <th data-breakpoints="xs sm md" data-title="DOB">Ürün Adi</th>
+    <th>Paket Tipi</th>
+    <th>Stok Bilgisi</th>
+    
+
+    <th data-breakpoints="xs sm md" data-title="DOB">Son Güncelleme Tarihi</th>
+  </tr>
+</thead>
+<tbody>
+ <% @urunlers.each do |urunler| %>
+ <tr data-expanded="true">
+  <td><%= urunler.adi %></td>
+  <td><%= urunler.paket_tipi %></td>
+  <td><%= urunler.stok %> Adet</td>
+  <td><%= urunler.date.strftime("%d-%m-%Y") %></td>
+  <td><%= link_to '', urunler, method: :delete, data: { confirm: 'Are you sure?' },class:"btn btn-default fa fa-trash" %></td>
+
+</tr>
+<% end %>
+</tbody>
+</table>
+</div>
+</div>
+</table>
+</div>
+</div>
+</div>
+</section>
+
+
+

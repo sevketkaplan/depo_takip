@@ -1,0 +1,140 @@
+
+<section class="wrapper">
+  <!-- //market-->
+  <div class="market-updates">
+   <div class="col-md-3 market-update-gd">
+    <div class="market-update-block clr-block-2">
+     <div class="col-md-4 market-update-right">
+      <i class="fa fa-truck"> </i>
+    </div>
+    <div class="col-md-8 market-update-left">
+      <h4>Günlük Toplam Ödeme </h4>
+      <h3><%=Odeme.where(:date => Date.today).all.sum(:odeme_miktari)%>TL</h3>
+      
+    </div>
+    <div class="clearfix"> </div>
+  </div>
+
+</div>
+<div class="col-md-3 market-update-gd">
+  <div class="market-update-block clr-block-1">
+   <div class="col-md-4 market-update-right">
+    <i class="fa fa-truck" ></i>
+  </div>
+  <div class="col-md-8 market-update-left">
+   <h4>Firmaların Toplam Borcu </h4>
+   <h3><%=Bakiye.all.sum(:toplam_borc)%>  Lt</h3>
+
+ </div>
+ <div class="clearfix"> </div>
+</div>
+</div>
+<div class="col-md-3 market-update-gd">
+  <div class="market-update-block clr-block-3">
+   <div class="col-md-4 market-update-right">
+    <i class="fa fa-usd"></i>
+  </div>
+  <div class="col-md-8 market-update-left">
+    <h4>Günlük Ciro</h4>
+    <h3><%=Satilan.where(:date => Date.today).sum(:toplam_fiyat)%>  TL</h3>
+
+  </div>
+  <div class="clearfix"> </div>
+</div>
+</div>
+<div class="col-md-3 market-update-gd">
+  <div class="market-update-block clr-block-4">
+   <div class="col-md-4 market-update-right">
+    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+  </div>
+  <div class="col-md-8 market-update-left">
+    <h4>Toplam Ciro</h4>
+    <h3><%=Satilan.all.sum(:toplam_fiyat).to_f - Iade.all.sum(:toplam_fiyat).to_f%> TL</h3>
+    
+  </div>
+  <div class="clearfix"> </div>
+</div>
+</div>
+<div class="clearfix"> </div>
+</div>  
+
+
+<div class="table-agile-info">
+ <div class="panel panel-default">
+  <div class="panel-heading">
+    Yapılan Ödeme Özetleri
+
+  </div>
+  <div>
+    <table class="table" ui-jq="footable" ui-options='{
+    "paging": {
+    "enabled": true
+  },
+  "filtering": {
+  "enabled": true
+},
+"sorting": {
+"enabled": true
+}}'>
+<div class="container">
+
+  <div class="center">
+    <br>
+    
+    <div class="col-md-4">
+     <%=form_tag odemes_path, :method =>'get' do%>
+
+     <%= text_field_tag :search, params[:search] %>
+     
+     <%= submit_tag "Arama Yap"%>
+
+     <% end %>
+   </div>
+   <div class="col-md-2">
+    <%= link_to 'Yeni Ödeme İşlemi', new_odeme_path , class: "btn btn-primary " %><br><br>
+  </div>
+</div>
+<div class="col-md-3">
+  <%= link_to "CSV", odemes_path(format: "csv") %> |
+  <%= link_to "Excel", odemes_path(format: "xls") %>
+</div> 
+</div>
+
+</div>
+<thead>
+  <tr>
+    <th data-breakpoints="xs">Firma Adı</th>
+    <th data-breakpoints="xs sm md" data-title="DOB">Ödeme Miktarı</th>
+    <th> Ödemeyi Alan Dağıtıcı</th>  
+    <th> Ödeme Tarihi</th>
+    <th colspan="3"></th>
+  </tr>
+
+</thead>
+<tbody>
+  <% @search.find_odemes.each do |odeme| %>
+  <tr data-expanded="true">
+    <td><%= odeme.teslim_yeri %></td>
+    <td><%= odeme.odeme_miktari %> TL</td>
+    <td><%= odeme.dagitici %></td>
+    <td><%= odeme.date.strftime("%d-%m-%Y") %></td>
+
+    
+    <td> <%= link_to '', edit_odeme_path(odeme) , class:"btn btn-default fa fa-pencil"%></td>
+    <td> <%= link_to '', odeme, method: :delete, data: { confirm: 'Are you sure?' },class:"btn btn-default fa fa-trash" %></td>
+  </tr>
+
+  <% end %>
+</tbody>
+</table>
+</div>
+</div>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+
+
+

@@ -1,0 +1,141 @@
+
+<section class="wrapper">
+  <!-- //market-->
+  <div class="market-updates">
+   <div class="col-md-3 market-update-gd">
+    <div class="market-update-block clr-block-2">
+     <div class="col-md-4 market-update-right">
+      <i class="fa fa-truck"> </i>
+    </div>
+    <div class="col-md-8 market-update-left">
+      <h4>Kalan Süt </h4>
+      <h3><%=Sut.all.sum(:miktar)- Harcanansut.all.sum(:harcanan)%> Lt</h3>
+      
+    </div>
+    <div class="clearfix"> </div>
+  </div>
+
+</div>
+<div class="col-md-3 market-update-gd">
+  <div class="market-update-block clr-block-1">
+   <div class="col-md-4 market-update-right">
+    <i class="fa fa-truck" ></i>
+  </div>
+  <div class="col-md-8 market-update-left">
+   <h4>Günlük Süt </h4>
+   <h3><%=Sut.where(:date => Date.today).sum(:miktar)%>  Lt</h3>
+
+ </div>
+ <div class="clearfix"> </div>
+</div>
+</div>
+<div class="col-md-3 market-update-gd">
+  <div class="market-update-block clr-block-3">
+   <div class="col-md-4 market-update-right">
+    <i class="fa fa-usd"></i>
+  </div>
+  <div class="col-md-8 market-update-left">
+    <h4>Günlük Ciro</h4>
+    <h3><%=Satilan.where(:date => Date.today).sum(:toplam_fiyat)%>  TL</h3>
+
+  </div>
+  <div class="clearfix"> </div>
+</div>
+</div>
+<div class="col-md-3 market-update-gd">
+  <div class="market-update-block clr-block-4">
+   <div class="col-md-4 market-update-right">
+    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+  </div>
+  <div class="col-md-8 market-update-left">
+    <h4>Toplam Ciro</h4>
+    <h3><%=Satilan.all.sum(:toplam_fiyat)%> TL</h3>
+    
+  </div>
+  <div class="clearfix"> </div>
+</div>
+</div>
+<div class="clearfix"> </div>
+</div>  
+
+<div class="table-agile-info">
+ <div class="panel panel-default">
+  <div class="panel-heading">
+   Kullanıcılar
+
+ </div>
+ <div>
+  <table class="table" ui-jq="footable" ui-options='{
+  "paging": {
+  "enabled": true
+},
+"filtering": {
+"enabled": true
+},
+"sorting": {
+"enabled": true
+}}'>
+<div class="container">
+
+  <div class="center">
+    <br>
+    
+    <div class="col-md-4">
+     <%=form_tag users_path, :method =>'get' do%>
+
+     <%= text_field_tag :search, params[:search] %>
+
+     <%= submit_tag "Arama Yap"%>
+
+     <% end %>
+   </div>
+   <div class="col-md-4">
+     <%= link_to 'Yeni Kullanıcı Olustur', new_user_path , class: "btn btn-primary " %><br><br>
+   </div>
+ </div>
+ <div class="col-md-4">
+
+ </div> 
+</div>
+
+</div>
+<thead>
+  <tr>
+   <th>Adı & Soyadı</th>
+   <th>Kullanıcı Adı</th>
+   <th>Email</th>
+   <th>Hesabın Oluşturulma Tarihi</th>
+   <th>Son Girdiği IP</th>
+   <th>Kullanıcı Hesap Ayarları</th>
+
+   
+ </tr>
+
+</thead>
+<tbody>
+  <% @users.each do |user| %>
+  <tr data-expanded="true">
+    <td><%= user.ad_soyad %></td>
+    <td><%= user.username %></td>
+    <td><%= user.email %></td>
+    <td><%= user.created_at.strftime("%d-%m-%Y") %></td>
+    <td><%=user.last_sign_in_ip%></td>
+    
+
+    <td class="text-center"> <%= link_to '', edit_user_path(user) , class:"btn btn-warning fa fa-cog " , style:"font-size:2em;"%></td>
+
+  </tr>
+  <% end %>
+</tbody>
+</table>
+</div>
+</div>
+</table>
+</div>
+</div>
+</div>
+</section>
+
+
+
+

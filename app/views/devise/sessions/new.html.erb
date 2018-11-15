@@ -1,0 +1,39 @@
+
+
+<h2>Giriş Yap</h2>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<div class="log-w3">
+  <div class="w3layouts-main">
+    <h2>Giriş Yap</h2>
+    <div class="field">
+      <%= f.label :Kullanıcı_Adı %><br />
+      <%= f.text_field :username, autofocus: true,class: "ggg" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :Şifre %><br />
+      <%= f.password_field :password, autocomplete: "off",class: "ggg"  %>
+    </div>
+
+    <% if devise_mapping.rememberable? -%>
+    <div class="field">
+      <%= f.check_box :remember_me%>
+      <%= f.label :Beni_Hatırla %>
+    </div>
+    
+    <% end -%>
+
+    <div class="actions">
+      <%= f.submit "Giriş Yap",class: "ggg" %>
+    </div>
+
+  </div>
+</div>
+
+<% end %>
+
+
+<div class="clearfix"></div>
+
+
+

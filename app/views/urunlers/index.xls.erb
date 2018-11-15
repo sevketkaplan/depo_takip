@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+
+        <Cell><Data ss:Type="String">Ürün Adı</Data></Cell>
+        <Cell><Data ss:Type="String">Paket Tipi</Data></Cell>
+        <Cell><Data ss:Type="String">Stok Bilgisi</Data></Cell>
+        <Cell><Data ss:Type="String">Son Güncelleme Tarihi</Data></Cell>
+
+
+
+      </Row>
+      <% Urunler.all.each do |urunler| %>
+      <Row>
+
+        <Cell><Data ss:Type="String"><%=urunler.adi%></Data></Cell>
+        <Cell><Data ss:Type="String"><%=urunler.paket_tipi%></Data></Cell>
+        <Cell><Data ss:Type="String"><%=urunler.stok%></Data></Cell>
+        <Cell><Data ss:Type="String"><%=urunler.date%></Data></Cell>
+      </Row>
+      <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

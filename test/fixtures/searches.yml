@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  teslim_yeri: MyString
+  adi: MyString
+  paket_tipi: MyString
+  dağitici: MyString
+  min_date: 2018-06-28
+  max_date: 2018-06-28
+
+two:
+  teslim_yeri: MyString
+  adi: MyString
+  paket_tipi: MyString
+  dağitici: MyString
+  min_date: 2018-06-28
+  max_date: 2018-06-28

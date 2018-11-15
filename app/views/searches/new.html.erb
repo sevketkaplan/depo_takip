@@ -1,0 +1,60 @@
+
+<section class="wrapper">
+  <div class="form-w3layouts">
+   <div class="row">
+    <div class="col-lg-12">
+      <section class="panel">
+        <header class="panel-heading">
+          Detaylı Arama Formu
+          <span class="tools pull-right">
+            <a class="fa fa-chevron-down" href="javascript:;"></a>
+            <a class="fa fa-cog" href="javascript:;"></a>
+            <a class="fa fa-times" href="javascript:;"></a>
+          </span>
+        </header>
+        <%= form_for @search do |f|%>
+        
+        <div class="panel-body">
+         <form class="cmxform form-horizontal " id="commentForm" method="get" action="" novalidate="novalidate">
+          <div class="form-group">
+            <label for="cname" class="control-label col-lg-3">Teslim Edilen Yer</label>
+            <%= f.text_field :teslim_yeri %>
+          </div>
+          <div class="form-group">
+            <label for="cname" class="control-label col-lg-3">Ürün</label>
+            <%= f.collection_select :adi, Urunadi.all, :adi, :adi, include_blank: true %>
+          </div>
+
+          <div class="form-group">
+           <label for="cname" class="control-label col-lg-3">Paket Tipi</label>
+           <%= f.collection_select :paket_tipi,Pakettipi.select(:paket_tipi).distinct, :paket_tipi, :paket_tipi, include_blank: true %>
+         </div>
+
+         <div class="form-group">
+          <label for="cname" class="control-label col-lg-3">Dağıtıcı Kişi</label>
+          <%= f.collection_select :dağitici, User.all, :id, :ad_soyad, include_blank: true %>
+        </div>
+
+        <div class="form-group">
+          <label for="cname" class="control-label col-lg-3">Başlangıç Tarihi</label>
+          <%= f.date_field :min_date %>
+        </div>
+
+        <div class="form-group">
+          <label for="cname" class="control-label col-lg-3">Bitiş Tarihi</label>
+          <%= f.date_field :max_date %>
+        </div>
+        <div class="actions">
+          <%= f.submit "Ara", class: "btn btn-primary"%>
+        </div>
+
+      </form>
+    </div>
+  </section>
+  <%end%>
+</div>
+</div>
+</div>
+</section>
+
+

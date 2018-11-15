@@ -1,0 +1,145 @@
+
+<section class="wrapper">
+  <!-- //market-->
+  <div class="market-updates">
+   <div class="col-md-3 market-update-gd">
+    <div class="market-update-block clr-block-2">
+     <div class="col-md-4 market-update-right">
+      <i class="fa fa-truck"> </i>
+    </div>
+    <div class="col-md-8 market-update-left">
+      <h4>Kalan Süt </h4>
+      <h3><%=Sut.all.sum(:miktar)- Harcanansut.all.sum(:harcanan)%> Lt</h3>
+      
+    </div>
+    <div class="clearfix"> </div>
+  </div>
+
+</div>
+<div class="col-md-3 market-update-gd">
+  <div class="market-update-block clr-block-1">
+   <div class="col-md-4 market-update-right">
+    <i class="fa fa-truck" ></i>
+  </div>
+  <div class="col-md-8 market-update-left">
+   <h4>Günlük Süt </h4>
+   <h3><%=Sut.where(:date => Date.today).sum(:miktar)%>  Lt</h3>
+
+ </div>
+ <div class="clearfix"> </div>
+</div>
+</div>
+<div class="col-md-3 market-update-gd">
+  <div class="market-update-block clr-block-3">
+   <div class="col-md-4 market-update-right">
+    <i class="fa fa-usd"></i>
+  </div>
+  <div class="col-md-8 market-update-left">
+    <h4>Günlük Ciro</h4>
+    <h3><%=Satilan.where(:date => Date.today).sum(:toplam_fiyat)%>  TL</h3>
+
+  </div>
+  <div class="clearfix"> </div>
+</div>
+</div>
+<div class="col-md-3 market-update-gd">
+  <div class="market-update-block clr-block-4">
+   <div class="col-md-4 market-update-right">
+    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+  </div>
+  <div class="col-md-8 market-update-left">
+    <h4>Toplam Ciro</h4>
+    <h3><%=Satilan.all.sum(:toplam_fiyat)%> TL</h3>
+    
+  </div>
+  <div class="clearfix"> </div>
+</div>
+</div>
+<div class="clearfix"> </div>
+</div>  
+
+<div class="table-agile-info">
+ <div class="panel panel-default">
+  <div class="panel-heading">
+    Yapılan Satış Kayıtları
+
+  </div>
+  <div>
+    <table class="table" ui-jq="footable" ui-options='{
+    "paging": {
+    "enabled": true
+  },
+  "filtering": {
+  "enabled": true
+},
+"sorting": {
+"enabled": true
+}}'>
+<div class="container">
+
+  <div class="center">
+    <br>
+    
+    <div class="col-md-4">
+     <%=form_tag iades_path, :method =>'get' do%>
+
+     <%= date_field_tag :search, params[:search] %>
+     
+     <%= submit_tag "Arama Yap"%>
+
+     <% end %>
+   </div>
+   <div class="col-md-2">
+    <%= link_to 'Yeni İade Formu', new_iade_path , class: "btn btn-primary " %><br><br>
+  </div>
+</div>
+<div class="col-md-3">
+  <%= link_to "CSV", iades_path(format: "csv") %> |
+  <%= link_to "Excel", iades_path(format: "xls") %>
+</div>
+
+</div>
+
+</div>
+<thead>
+  <tr>
+    <th data-breakpoints="xs">Teslim yeri</th>
+    <th>Adi</th>
+    <th>Paket tipi</th>
+    <th>Adet</th>
+    <th data-breakpoints="xs">Birim fiyat</th>
+
+    <th data-breakpoints="xs sm md" data-title="DOB">Toplam fiyat</th>
+    <th>Dağıtıcı Kişi</th>
+    <th colspan="3"></th>
+  </tr>
+
+</thead>
+<tbody>
+  <% @search.find_iades.each do |iade| %>
+  <tr data-expanded="true">
+    <td><%= iade.teslim_yeri %></td>
+    <td><%= iade.adi %></td>
+    <td><%= iade.paket_tipi %></td>
+    <td><%= iade.adet %></td>
+    <td><%= iade.birim_fiyat %> TL</td>
+    <td><%= iade.toplam_fiyat %></td>
+    <td><%= iade.dagitici %></td>
+    
+    
+
+
+  </tr>
+  <% end %>
+</tbody>
+</table>
+</div>
+</div>
+</table>
+</div>
+</div>
+</div>
+
+
+
+

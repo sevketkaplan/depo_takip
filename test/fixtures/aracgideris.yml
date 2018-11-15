@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  yakit: 1
+  mtv: 1
+  bakim: 1
+  sigorta: 1
+  kasko: 1
+  plaka: MyString
+
+two:
+  yakit: 1
+  mtv: 1
+  bakim: 1
+  sigorta: 1
+  kasko: 1
+  plaka: MyString

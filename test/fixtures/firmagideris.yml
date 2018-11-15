@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  elektrik: 1
+  su: 1
+  kira: 1
+  dogalgaz: 1
+  vergi: 1
+  yemek: 1
+
+two:
+  elektrik: 1
+  su: 1
+  kira: 1
+  dogalgaz: 1
+  vergi: 1
+  yemek: 1

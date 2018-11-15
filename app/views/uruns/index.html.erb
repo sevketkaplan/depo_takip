@@ -1,0 +1,142 @@
+
+ <section class="wrapper">
+  <!-- //market-->
+  <div class="market-updates">
+   <div class="col-md-3 market-update-gd">
+    <div class="market-update-block clr-block-2">
+     <div class="col-md-4 market-update-right">
+      <i class="fa fa-truck"> </i>
+    </div>
+    <div class="col-md-8 market-update-left">
+      <h4>Kalan Süt </h4>
+      <h3><%=Sut.all.sum(:miktar)- Harcanansut.all.sum(:harcanan)%> Lt</h3>
+      
+    </div>
+    <div class="clearfix"> </div>
+  </div>
+
+</div>
+<div class="col-md-3 market-update-gd">
+  <div class="market-update-block clr-block-1">
+   <div class="col-md-4 market-update-right">
+    <i class="fa fa-truck" ></i>
+  </div>
+  <div class="col-md-8 market-update-left">
+   <h4>Günlük Süt </h4>
+   <h3><%=Sut.where(:date => Date.today).sum(:miktar)%>  Lt</h3>
+
+ </div>
+ <div class="clearfix"> </div>
+</div>
+</div>
+<div class="col-md-3 market-update-gd">
+  <div class="market-update-block clr-block-3">
+   <div class="col-md-4 market-update-right">
+    <i class="fa fa-usd"></i>
+  </div>
+  <div class="col-md-8 market-update-left">
+    <h4>Günlük Ciro</h4>
+    <h3><%=Satilan.where(:date => Date.today).sum(:toplam_fiyat)%>  TL</h3>
+
+  </div>
+  <div class="clearfix"> </div>
+</div>
+</div>
+<div class="col-md-3 market-update-gd">
+  <div class="market-update-block clr-block-4">
+   <div class="col-md-4 market-update-right">
+    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+  </div>
+  <div class="col-md-8 market-update-left">
+    <h4>Toplam Ciro</h4>
+    <h3><%=Satilan.all.sum(:toplam_fiyat)%> TL</h3>
+    
+  </div>
+  <div class="clearfix"> </div>
+</div>
+</div>
+<div class="clearfix"> </div>
+</div>  
+
+<div class="table-agile-info">
+ <div class="panel panel-default">
+  <div class="panel-heading">
+    Üretilen Ürün Kayıtları
+
+ </div>
+ <div>
+  <table class="table" ui-jq="footable" ui-options='{
+  "paging": {
+  "enabled": true
+},
+"filtering": {
+"enabled": true
+},
+"sorting": {
+"enabled": true
+}}'>
+<div class="container">
+
+  <div class="center">
+    <br>
+
+    <%= form_tag uruns_path, method: :get do %>
+    <div class="row">
+     <div class="col-md-3">
+      <%=date_field_tag 'search[date_from]', @search.date_from, style: "width:100%" %><br><br>
+    </div>
+    <div class="col-md-3">
+     <%=date_field_tag 'search[date_to]', @search.date_to , style: "width:100%" %><br><br>
+
+   </div>
+   <div class="col-md-3">
+     <%= button_tag(type: 'submit', class: "btn btn-success") do %>
+     <span class="glyphicon glyphicon-search" style= "color:white;"></span> Arama Yap
+     <% end %>
+     <%end%>
+
+
+     <%= link_to 'Yeni Ürün Kaydı', new_urun_path , class: "btn btn-primary " %><br><br>
+   </div>
+   <div class="col-md-3">
+    <%= link_to "CSV", uruns_path(format: "csv") %> |
+    <%= link_to "Excel", uruns_path(format: "xls") %>
+  </div> 
+</div>
+<br>
+<thead>
+  <tr>
+    <th data-breakpoints="xs sm md" data-title="DOB">Ürün Adi</th>
+    <th>Paket Tipi</th>
+    <th>Stok Bilgisi</th>
+    
+
+    <th data-breakpoints="xs sm md" data-title="DOB">Eklenme Tarihi</th>
+  </tr>
+</thead>
+<tbody>
+ <% @uruns.each do |urun| %>
+ <tr data-expanded="true">
+  <td><%= urun.adi %></td>
+  <td><%= urun.paket_tipi %></td>
+  <td><%= urun.stok %> Adet</td>
+  <td><%= urun.date.strftime("%d-%m-%Y") %></td>
+
+  <td> <%= link_to '', edit_urun_path(urun) , class:"btn btn-default fa fa-pencil"%></td>
+  <td> <%= link_to '', urun, method: :delete, data: { confirm: 'Are you sure?' },class:"btn btn-default fa fa-trash" %></td>
+
+</tr>
+  <% end %>
+</tbody>
+</table>
+</div>
+</div>
+</table>
+<%= paginate @uruns %>
+</div>
+</div>
+</div>
+</section>
+
+
+

@@ -1,0 +1,109 @@
+ <section class="wrapper">
+  <!-- //market-->
+  <div class="market-updates">
+   <div class="col-md-3 market-update-gd">
+    <div class="market-update-block clr-block-2">
+     <div class="col-md-4 market-update-right">
+      <i class="fa fa-truck"> </i>
+    </div>
+    <div class="col-md-8 market-update-left">
+      <h4>Toplam Kalan Süt </h4>
+      <h3><%=Sut.all.sum(:miktar)- Harcanansut.all.sum(:harcanan)%> Lt</h3>
+      
+    </div>
+    <div class="clearfix"> </div>
+  </div>
+
+</div>
+<div class="col-md-3 market-update-gd">
+  <div class="market-update-block clr-block-1">
+   <div class="col-md-4 market-update-right">
+    <i class="fa fa-truck" ></i>
+  </div>
+  <div class="col-md-8 market-update-left">
+   <h4>Günlük Süt </h4>
+   <h3><%=Sut.where(:date => Date.today).sum(:miktar)%>  Lt</h3>
+
+ </div>
+ <div class="clearfix"> </div>
+</div>
+</div>
+<div class="col-md-3 market-update-gd">
+  <div class="market-update-block clr-block-3">
+   <div class="col-md-4 market-update-right">
+    <i class="fa fa-usd"></i>
+  </div>
+  <div class="col-md-8 market-update-left">
+    <h4>Günlük Ciro</h4>
+    <h3><%=Satilan.where(:date => Date.today).sum(:toplam_fiyat)%>  TL</h3>
+
+  </div>
+  <div class="clearfix"> </div>
+</div>
+</div>
+<div class="col-md-3 market-update-gd">
+  <div class="market-update-block clr-block-4">
+   <div class="col-md-4 market-update-right">
+    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+  </div>
+  <div class="col-md-8 market-update-left">
+    <h4>Toplam Ciro</h4>
+    <h3><%=Satilan.all.sum(:toplam_fiyat)%> TL</h3>
+    
+  </div>
+  <div class="clearfix"> </div>
+</div>
+</div>
+<div class="clearfix"> </div>
+</div>  
+
+<div class="table-agile-info">
+ <div class="panel panel-default">
+  <div class="panel-heading">
+    Üretilen Ürün Kayıtları
+
+  </div>
+  <div>
+    <table class="table" ui-jq="footable" ui-options='{
+    "paging": {
+    "enabled": true
+  },
+  "filtering": {
+  "enabled": true
+},
+"sorting": {
+"enabled": true
+}}'>
+<thead>
+  <tr>
+    <th>Aracın Plakası</th>
+   
+    <th>Tarih</th>
+
+  </tr>
+</thead>
+<tbody>
+  <% @aracs.each do |arac| %>
+  <tr data-expanded="true">
+    <td><%= arac.plaka %></td>
+    
+    <td><%= arac.created_at.strftime("%d-%m-%Y") %></td>
+
+    <td> <%= link_to '', edit_arac_path(arac) , class:"btn btn-default fa fa-pencil"%></td>
+    <td> <%= link_to '', arac, method: :delete, data: { confirm: 'Are you sure?' },class:"btn btn-default fa fa-trash" %></td>
+
+  </tr>
+  <% end %>
+</tbody>
+</table>
+</div>
+</div>
+</table>
+</div>
+</div>
+</div>
+</section>
+
+
+
+

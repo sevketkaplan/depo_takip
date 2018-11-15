@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  plaka: MyString
+  min_date: 2018-07-02
+  max_date: 2018-07-02
+
+two:
+  plaka: MyString
+  min_date: 2018-07-02
+  max_date: 2018-07-02

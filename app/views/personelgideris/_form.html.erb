@@ -1,0 +1,52 @@
+
+  <section class="wrapper">
+    <div class="form-w3layouts">
+     <div class="row">
+      <div class="col-lg-12">
+        <section class="panel">
+          <header class="panel-heading">
+           Ürün Kayıt
+           <span class="tools pull-right">
+            <a class="fa fa-chevron-down" href="javascript:;"></a>
+            <a class="fa fa-cog" href="javascript:;"></a>
+            <a class="fa fa-times" href="javascript:;"></a>
+          </span>
+        </header>
+
+        
+        <%= form_with(model: personelgideri, local: true) do |form| %>
+        <% if flash[:notice] %>
+        <div class="notice"><%= flash[:notice] %>
+        </div>
+        <% end %> <br> <br>
+        <div class="panel-body">
+         <form class="cmxform form-horizontal " id="commentForm" method="get" action="" novalidate="novalidate">
+
+
+          <div class="form-group">
+            <label for="urunadi" class="control-label col-lg-3">Personel Maaş Gideri</label>
+            <%= form.number_field :maas %>
+          </div>
+
+          <div class="form-group">
+           <label for="cname" class="control-label col-lg-3">Personel Sigorta Gideri</label>
+           <%= form.number_field :sigorta %>
+         </div>
+
+        
+
+        <div class="actions">
+          <%= form.submit "Kaydet", class: "btn btn-primary"%>
+        </div>
+
+      </form>
+    </div>
+  </div>
+  <% end %>
+</section>
+</div>
+</div>
+</div>
+</section>
+
+

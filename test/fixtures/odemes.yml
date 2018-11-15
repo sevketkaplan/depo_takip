@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  teslim_yeri: MyString
+  odeme_miktari: MyString
+  dagitici: MyString
+  date: 2018-07-16
+
+two:
+  teslim_yeri: MyString
+  odeme_miktari: MyString
+  dagitici: MyString
+  date: 2018-07-16

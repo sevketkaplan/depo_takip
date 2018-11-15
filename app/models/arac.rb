@@ -1,0 +1,2 @@
+class Arac < ApplicationRecord
+end

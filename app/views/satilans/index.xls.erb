@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+ 
+        <Cell><Data ss:Type="String">Ürünlerin Teslim Yeri</Data></Cell>
+        <Cell><Data ss:Type="String">Ürün Adı</Data></Cell>
+        <Cell><Data ss:Type="String">Ürün Paket Tipi</Data></Cell>
+        <Cell><Data ss:Type="String">Satılan Adet</Data></Cell>
+        <Cell><Data ss:Type="String">Ürün Birim Fiyatı</Data></Cell>
+        <Cell><Data ss:Type="String">Toplam Fiyat</Data></Cell>
+        <Cell><Data ss:Type="String">Satış Tarihi </Data></Cell>
+        <Cell><Data ss:Type="String">Dağıtıcı Kişi</Data></Cell>
+      </Row>
+      <% @satilans.each do |satilan| %>
+      <Row>
+        
+        <Cell><Data ss:Type="String"><%=satilan.teslim_yeri%></Data></Cell>
+        <Cell><Data ss:Type="String"><%=satilan.adi%></Data></Cell>
+        <Cell><Data ss:Type="String"><%=satilan.paket_tipi%></Data></Cell>
+        <Cell><Data ss:Type="String"><%=satilan.adet%></Data></Cell>
+        <Cell><Data ss:Type="String"><%=satilan.birim_fiyat%></Data></Cell>
+        <Cell><Data ss:Type="String"><%=satilan.toplam_fiyat%></Data></Cell>
+        <Cell><Data ss:Type="String"><%=satilan.date.strftime("%d-%m-%Y")%></Data></Cell>
+         <Cell><Data ss:Type="String"><%=satilan.user.ad_soyad%></Data></Cell>
+      </Row>
+      <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

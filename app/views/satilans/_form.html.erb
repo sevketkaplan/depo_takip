@@ -1,0 +1,78 @@
+
+<section class="wrapper">
+  <div class="form-w3layouts">
+   <div class="row">
+    <div class="col-lg-12">
+      <section class="panel">
+        <header class="panel-heading">
+          Satış  Formu
+          <span class="tools pull-right">
+            <a class="fa fa-chevron-down" href="javascript:;"></a>
+            <a class="fa fa-cog" href="javascript:;"></a>
+            <a class="fa fa-times" href="javascript:;"></a>
+          </span>
+        </header>
+
+        <%= form_with(model: satilan, local: true) do |form| %>
+        
+        <div class="panel-body">
+         <% if flash[:notice] %>
+         <div class="notice"><%= flash[:notice] %></div>
+         <%end %>
+         <form class="cmxform form-horizontal " id="commentForm" method="get" action="" novalidate="novalidate">
+          <div class="form-group">
+            <label for="cname" class="control-label col-lg-3">Teslim Edilen Yer</label>
+            <%= form.collection_select :teslim_yeri, Bakiye.select(:teslim_yeri).distinct,:teslim_yeri,:teslim_yeri %>
+          </div>
+          <div class="form-group">
+            <label for="cname" class="control-label col-lg-3">Ürün</label>
+            <%= form.collection_select :adi, Urunadi.all, :adi, :adi%>
+          </div>
+
+          <div class="form-group">
+           <label for="cname" class="control-label col-lg-3">Paket Tipi</label>
+           <%= form.collection_select :paket_tipi, Pakettipi.select(:paket_tipi).distinct, :paket_tipi, :paket_tipi%>
+         </div>
+
+         <div class="form-group">
+          <label for="cname" class="control-label col-lg-3">Ürün Satış Adeti</label>
+          <%= form.text_field :adet,id:"adet" %>
+        </div>
+
+        <div class="form-group">
+
+         <label for="cname" class="control-label col-lg-3">Ürünün Birim Fiyatı</label>
+
+         <%= form.text_field :birim_fiyat,id:"birim_fiyat", onkeydown:"hesapla();"%> 
+       </div>
+
+
+       <div class="form-group">
+        <label for="cname" class="control-label col-lg-3">Hesap Tutarı</label>
+        <%= form.text_field :toplam_fiyat,id: "toplam_fiyat" %>
+      </div>
+
+
+      <div class="actions">
+        <%= form.submit "Kaydet", class: "btn btn-primary"%>
+      </div>
+
+    </form>
+  </div>
+</section>
+<%end%>
+</div>
+</div>
+</div>
+</section>
+
+
+<script>
+  function hesapla(){
+   var adet=parseFloat(document.getElementById('adet').value);
+   var birim_fiyat=parseFloat(document.getElementById('birim_fiyat').value);
+
+
+   document.getElementById('toplam_fiyat').value=(birim_fiyat*adet)+" TL";
+ }
+</script>

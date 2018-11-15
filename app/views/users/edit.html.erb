@@ -1,0 +1,65 @@
+
+
+
+<section class="wrapper">
+  <div class="form-w3layouts">
+   <div class="row">
+    <div class="col-lg-12">
+      <section class="panel">
+        <header class="panel-heading">
+          Kullanıcı Hesabı Düzenleme
+          <span class="tools pull-right">
+            <a class="fa fa-chevron-down" href="javascript:;"></a>
+            <a class="fa fa-cog" href="javascript:;"></a>
+            <a class="fa fa-times" href="javascript:;"></a>
+          </span>
+        </header>
+
+
+        <%= form_for @user, url: edit_user_path do |f| %>
+        <% if flash[:notice] %>
+        <div class="notice"><%= flash[:notice] %>
+        </div>
+        <% end %> <br> <br>
+        <div class="panel-body">
+         <form class="cmxform form-horizontal " id="commentForm" method="get" action="" novalidate="novalidate">
+          <div class="">
+            <%= f.label :Adı_Soyadı %><br/>
+            <%= f.text_field :ad_soyad%>
+          </div>
+          <div class="field ggg">
+            <%= f.label :Kullanıcı_Adı %><br/>
+            <%= f.text_field :username%>
+          </div>
+          <div class="field ggg">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          </div>
+
+          <div class="field ggg">
+            <%= f.label :password %>
+            <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %><br />
+            <%= f.password_field :password, autocomplete: "off" %>
+          </div>
+
+          <div class="field ggg">
+            <%= f.label :password_confirmation %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "off"%>
+          </div>
+          
+          <br>
+          <div class="actions ggg">
+            <%= f.submit "Kaydet", class: "btn btn-warning"%>
+          </div>
+        </form>
+      </div>
+    </div>
+    <% end %>
+  </section>
+</div>
+</div>
+</div>
+</section>
+

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  adi: MyString
+  paket_tipi: MyString
+  stok: 1
+  date: 2018-06-26
+
+two:
+  adi: MyString
+  paket_tipi: MyString
+  stok: 1
+  date: 2018-06-26
